@@ -5,6 +5,9 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
@@ -91,11 +94,150 @@ namespace @new
         private void button1_Click_1(object sender, EventArgs e)
         {
             //SS
+            int[] numbersTab = Convert(textBox1.Text);
+
+            if(numbersTab != null)
+            {
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+
+                int minIndex = 0;
+                int index = 0;
+                int temp = 0;
+                for (int i = 0; i < numbersTab.Length; i++)
+                {
+                    minIndex = i;
+                    for (int j = i + 1; j < numbersTab.Length; j++)
+                    {
+                        if (numbersTab[j] < numbersTab[minIndex])
+                        {
+                            minIndex = j;
+                        }
+                    }
+                    if (minIndex != i)
+                    {
+                        temp = numbersTab[minIndex];
+                        numbersTab[minIndex] = numbersTab[i];
+                        numbersTab[i] = temp;
+                    }
+                }
+
+                stopwatch.Stop();
+                TimeSpan timeSpan = stopwatch.Elapsed;
+                timeValue.Text = timeSpan.TotalMilliseconds + " ms";
+
+                string sortedTab = string.Join(" ", numbersTab);
+                textBox2.Text = sortedTab;
+
+            }
         }
 
         private void button1_Click_2(object sender, EventArgs e)
         {
             //SI
+            int[] numbersTab = Convert(textBox1.Text);
+
+            if(numbersTab != null)
+            {
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+
+                int temp = 0;
+
+                for(int i=1; i<numbersTab.Length; i++)
+                {
+                    temp = numbersTab[i];
+                    int j = i - 1;
+                    while(j >= 0 && numbersTab[j] > temp)
+                    {
+                        numbersTab[j + 1] = numbersTab[j];
+                        j -= 1; // jesli j mniejsze od 0 to nie sprawdzamy juz po lewej j
+                    }
+                    numbersTab[j + 1] = temp;
+                }
+
+                stopwatch.Stop();
+                TimeSpan timeSpan = stopwatch.Elapsed;
+                timeValue.Text = timeSpan.TotalMilliseconds + " ms";
+
+                string sortedTab = string.Join(" ", numbersTab);
+                textBox2.Text = sortedTab;
+            }
+        }
+
+        private void SM_Click(object sender, EventArgs e)
+        {
+            //SM
+            int[] numbersTab = Convert(textBox1.Text);
+
+            if(numbersTab != null)
+            {
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+                mergeSort(numbersTab);
+
+                stopwatch.Stop();
+                TimeSpan timeSpan = stopwatch.Elapsed;
+                timeValue.Text = timeSpan.TotalMilliseconds + " ms";
+
+                string sortedTab = string.Join(" ", numbersTab);
+                textBox2.Text = sortedTab;
+            }
+        }
+
+        private void mergeSort(int[] numbersTab)
+        {
+            if(numbersTab.Length <= 1)
+            {
+                return;
+            }
+
+            int mid = numbersTab.Length / 2;
+            int[] left = new int[mid];
+            int[] right = new int[numbersTab.Length - mid];
+
+            for (int i = 0; i < mid; i++)
+            {
+                left[i] = numbersTab[i];
+            }
+            for (int i = mid; i < numbersTab.Length; i++)
+            {
+                right[i-mid] = numbersTab[i];
+            }
+
+            mergeSort(left);
+            mergeSort(right);
+
+            // Kiedy mamy juz pojedyncze elementy jako tablicy laczymy je w wieksze tablice
+            int leftIndex = 0, rightIndex = 0, index = 0;
+            while(leftIndex < left.Length && rightIndex < right.Length)
+            {
+                if (left[leftIndex] < right[rightIndex])
+                {
+                    numbersTab[index] = left[leftIndex];
+                    leftIndex++;
+                }
+                else
+                {
+                    numbersTab[index] = right[rightIndex];
+                    rightIndex++;
+                }
+                index++;
+            }
+
+            while(leftIndex < left.Length)
+            {
+                numbersTab[index] = left[leftIndex];
+                leftIndex++;
+                index++;
+            }
+
+            while(rightIndex < right.Length)
+            {
+                numbersTab[index] = right[rightIndex];
+                rightIndex++;
+                index++;
+            }
         }
 
         private void button1_Click_3(object sender, EventArgs e)
@@ -107,5 +249,7 @@ namespace @new
         {
             //CZAS
         }
+
+        
     }
 }

@@ -153,6 +153,7 @@
             this.SM.TabIndex = 11;
             this.SM.Text = "SM";
             this.SM.UseVisualStyleBackColor = true;
+            this.SM.Click += new System.EventHandler(this.SM_Click);
             // 
             // SQ
             // 
