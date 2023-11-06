@@ -20,6 +20,7 @@ namespace @new
         public Form1()
         {
             InitializeComponent();
+            numericUpDown1.Enabled = false;
         }
 
         int[] Convert(string data)
@@ -40,8 +41,8 @@ namespace @new
             {
                 MessageBox.Show("Zły format danych");
                 return null;
-                textBox1.Text = "";
-                textBox2.Text = "";
+                textBox1.Text = null;
+                textBox2.Text = null;
             }
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -51,7 +52,19 @@ namespace @new
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            //checkboxa
+            //checkbox
+            if (checkBox1.Checked)
+            {
+                textBox1.Enabled = false;
+                numericUpDown1.Enabled = true;
+            }
+            else
+            {
+                textBox1.Enabled = true;
+                numericUpDown1.Enabled = false;
+            }
+            textBox1.Text = "";
+            textBox2.Text = "";
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -170,8 +183,7 @@ namespace @new
             //SM
             int[] numbersTab = Convert(textBox1.Text);
 
-            if(numbersTab != null)
-            {
+            
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
                 mergeSort(numbersTab);
@@ -182,7 +194,7 @@ namespace @new
 
                 string sortedTab = string.Join(" ", numbersTab);
                 textBox2.Text = sortedTab;
-            }
+            
         }
 
         private void mergeSort(int[] numbersTab)
@@ -243,13 +255,73 @@ namespace @new
         private void button1_Click_3(object sender, EventArgs e)
         {
             //SQ
+            int[] numbersTab = Convert(textBox1.Text);
+
+
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            quickSort(numbersTab, 0 ,numbersTab.Length-1);
+
+            stopwatch.Stop();
+            TimeSpan timeSpan = stopwatch.Elapsed;
+            timeValue.Text = timeSpan.TotalMilliseconds + " ms";
+
+            string sortedTab = string.Join(" ", numbersTab);
+            textBox2.Text = sortedTab;
+
+        }
+
+        private void quickSort(int[] numbersTab, int left, int right)
+        {
+            if (left < right)
+            {
+                int pivotTemp = pivotIndex(numbersTab, left, right);
+                quickSort(numbersTab, left, pivotTemp-1);
+                quickSort(numbersTab, pivotTemp+1, right);
+            }
+        }
+
+        private int pivotIndex(int[] numbersTab, int left, int right)
+        {
+            int pivot = numbersTab[right];
+            int i = left - 1;
+            for(int j=left; j<right; j++)
+            {
+                if (numbersTab[j] <= pivot)
+                {
+                    i++;
+                    int temp = numbersTab[i];
+                    numbersTab[i] = numbersTab[j];
+                    numbersTab[j] = temp;
+                }
+            }
+            int tempPivot = numbersTab[i + 1];
+            numbersTab[i + 1] = numbersTab[right];
+            numbersTab[right] = tempPivot;
+
+            return i + 1;
         }
 
         private void timeValue_Click(object sender, EventArgs e)
         {
-            //CZAS
+            
         }
 
-        
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Generuj_Click(object sender, EventArgs e)
+        {
+            Random random = new Random();
+            int size = (int)numericUpDown1.Value;
+            int[] numbersTab = new int[size];
+            for (int i = 0; i < numbersTab.Length; i++)
+            {
+                numbersTab[i] = random.Next(-2000, 2000);
+                textBox1.Text += numbersTab[i] + " ";
+            }
+        }
     }
 }

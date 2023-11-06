@@ -32,7 +32,6 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
             this.Czas = new System.Windows.Forms.Label();
             this.timeValue = new System.Windows.Forms.Label();
             this.Generuj = new System.Windows.Forms.Button();
@@ -76,15 +75,7 @@
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown1.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "label1";
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // Czas
             // 
@@ -101,9 +92,8 @@
             this.timeValue.AutoSize = true;
             this.timeValue.Location = new System.Drawing.Point(587, 251);
             this.timeValue.Name = "timeValue";
-            this.timeValue.Size = new System.Drawing.Size(35, 13);
+            this.timeValue.Size = new System.Drawing.Size(0, 13);
             this.timeValue.TabIndex = 6;
-            this.timeValue.Text = "label2";
             this.timeValue.Click += new System.EventHandler(this.timeValue_Click);
             // 
             // Generuj
@@ -114,6 +104,7 @@
             this.Generuj.TabIndex = 7;
             this.Generuj.Text = "Generuj";
             this.Generuj.UseVisualStyleBackColor = true;
+            this.Generuj.Click += new System.EventHandler(this.Generuj_Click);
             // 
             // SB
             // 
@@ -178,7 +169,6 @@
             this.Controls.Add(this.Generuj);
             this.Controls.Add(this.timeValue);
             this.Controls.Add(this.Czas);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.textBox2);
@@ -197,7 +187,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label Czas;
         private System.Windows.Forms.Label timeValue;
         private System.Windows.Forms.Button Generuj;
