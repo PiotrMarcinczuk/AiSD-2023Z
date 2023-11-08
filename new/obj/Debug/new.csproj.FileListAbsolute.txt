@@ -1,0 +1,10 @@
+C:\Users\wynio\source\repos\new\new\bin\Debug\@new.exe.config
+C:\Users\wynio\source\repos\new\new\bin\Debug\@new.exe
+C:\Users\wynio\source\repos\new\new\bin\Debug\@new.pdb
+C:\Users\wynio\source\repos\new\new\obj\Debug\new.csproj.AssemblyReference.cache
+C:\Users\wynio\source\repos\new\new\obj\Debug\new.Properties.Resources.resources
+C:\Users\wynio\source\repos\new\new\obj\Debug\new.csproj.GenerateResource.cache
+C:\Users\wynio\source\repos\new\new\obj\Debug\new.csproj.CoreCompileInputs.cache
+C:\Users\wynio\source\repos\new\new\obj\Debug\@new.exe
+C:\Users\wynio\source\repos\new\new\obj\Debug\@new.pdb
+C:\Users\wynio\source\repos\new\new\obj\Debug\new.Form1.resources
