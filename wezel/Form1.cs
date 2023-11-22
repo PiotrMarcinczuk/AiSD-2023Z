@@ -81,23 +81,45 @@ namespace wezel
             //w4.neighbours.Add(w7);
             w7.Add(w4);
             A(w1);
+            odwiedzone.Clear();
+            ADFS(w1);
+            odwiedzone.Clear();
         }
 
         List<Wezel2> odwiedzone = new List<Wezel2>();
         public void A(Wezel2 w)
         {
-            
-            odwiedzone.Clear();
+            MessageBox.Show(w.ToString());
+            odwiedzone.Add(w);
 
             foreach (var neighbour in w.neighbours)
             {
-                MessageBox.Show(neighbour.ToString());
-                if (odwiedzone.Contains(neighbour))
+                if (!odwiedzone.Contains(neighbour))
                 {
-                    odwiedzone.Add(neighbour);
                     A(neighbour);
                 }
 
+            }
+        }
+
+        public void ADFS(Wezel2 w)
+        {
+            Queue<Wezel2> queue = new Queue<Wezel2>();
+            queue.Enqueue(w);
+
+            while(queue.Count > 0)
+            {
+                 Wezel2 current = queue.Dequeue();
+                 MessageBox.Show(current.ToString());
+                 odwiedzone.Add(current);
+
+                 foreach(var neighbour in current.neigbours)
+                 {
+                      if(!odwiedzone.Contains(neighbour) && !queue.Contains(neighobur))
+                      {
+                          queue.Enqueue(neighbour);
+                      }
+                 }
             }
         }
     }
