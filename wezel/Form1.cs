@@ -37,7 +37,7 @@ namespace wezel
 
         void A(Wezel w)
         {
-            foreach(var dziecko in w.childs)
+            foreach (var dziecko in w.childs)
             {
                 MessageBox.Show(dziecko.ToString());
                 A(dziecko);
@@ -80,10 +80,17 @@ namespace wezel
             //w7.neighbours.Add(w4);
             //w4.neighbours.Add(w7);
             w7.Add(w4);
-            A(w1);
-            odwiedzone.Clear();
-            ADFS(w1);
-            odwiedzone.Clear();
+
+            //ABFS(w1);
+            //odwiedzone.Clear();
+            DrzewoBinarne tree = new DrzewoBinarne(4);
+            var d1 = new Wezel3(4);
+            var d2 = new Wezel3(1);
+            var d3 = new Wezel3(6);
+            tree.ADD(d1);
+            tree.ADD(d2);
+            tree.ADD(d3);
+            MessageBox.Show(tree.ToString());
         }
 
         List<Wezel2> odwiedzone = new List<Wezel2>();
@@ -102,24 +109,24 @@ namespace wezel
             }
         }
 
-        public void ADFS(Wezel2 w)
+        public void ABFS(Wezel2 w)
         {
             Queue<Wezel2> queue = new Queue<Wezel2>();
             queue.Enqueue(w);
 
-            while(queue.Count > 0)
+            while (queue.Count > 0)
             {
-                 Wezel2 current = queue.Dequeue();
-                 MessageBox.Show(current.ToString());
-                 odwiedzone.Add(current);
+                Wezel2 current = queue.Dequeue();
+                MessageBox.Show(current.ToString());
+                odwiedzone.Add(current);
 
-                 foreach(var neighbour in current.neigbours)
-                 {
-                      if(!odwiedzone.Contains(neighbour) && !queue.Contains(neighobur))
-                      {
-                          queue.Enqueue(neighbour);
-                      }
-                 }
+                foreach (var neighbour in current.neighbours)
+                {
+                    if (!odwiedzone.Contains(neighbour) && !queue.Contains(neighbour))
+                    {
+                        queue.Enqueue(neighbour);
+                    }
+                }
             }
         }
     }
@@ -160,8 +167,59 @@ namespace wezel
         {
             return "Wartość: " + this.wartosc.ToString();
         }
-
-        
     }
-        
+
+    public class Wezel3
+    {
+        public int wartosc;
+        public Wezel3 rodzic;
+        public Wezel3 leftChild;
+        public Wezel3 rightChild;
+
+        public Wezel3(int wartosc)
+        {
+            this.wartosc = wartosc;
+        }
+
+        public override string ToString()
+        {
+            return "Wartość: " + this.wartosc.ToString();
+        }
+    }
+
+    public class DrzewoBinarne
+    {
+        public Wezel3 korzen;
+        public int liczbaWezlow;
+        public DrzewoBinarne(int liczba)
+        {
+            this.korzen = new Wezel3(liczba);
+            this.liczbaWezlow = 1;
+        }
+
+        public void ADD(Wezel3 w)
+        {
+            Queue<Wezel3> queue = new Queue<Wezel3>();
+            queue.Enqueue(this.korzen);
+
+            while(queue.Count > 0)
+            {
+                Wezel3 parent = queue.Dequeue();
+                if(w.wartosc < parent.wartosc)
+                {
+                    w.rodzic = parent;
+                    parent.leftChild = w;
+                    queue.Enqueue(w);
+                    this.liczbaWezlow++;
+                }
+                else
+                {
+                    w.rodzic = parent;
+                    parent.rightChild = w;
+                    queue.Enqueue(w);
+                    this.liczbaWezlow++;
+                }
+            }
+        }
+    }
 }
