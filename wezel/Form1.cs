@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace wezel
 {
@@ -84,13 +85,12 @@ namespace wezel
             //ABFS(w1);
             //odwiedzone.Clear();
             DrzewoBinarne tree = new DrzewoBinarne(4);
-            var d1 = new Wezel3(4);
+            var d1 = new Wezel3(2);
             var d2 = new Wezel3(1);
             var d3 = new Wezel3(6);
             tree.ADD(d1);
             tree.ADD(d2);
             tree.ADD(d3);
-            MessageBox.Show(tree.ToString());
         }
 
         List<Wezel2> odwiedzone = new List<Wezel2>();
@@ -186,7 +186,7 @@ namespace wezel
             return "Wartość: " + this.wartosc.ToString();
         }
     }
-
+    
     public class DrzewoBinarne
     {
         public Wezel3 korzen;
@@ -201,24 +201,38 @@ namespace wezel
         {
             Queue<Wezel3> queue = new Queue<Wezel3>();
             queue.Enqueue(this.korzen);
-
             while(queue.Count > 0)
             {
                 Wezel3 parent = queue.Dequeue();
-                if(w.wartosc < parent.wartosc)
+                if (w.wartosc < parent.wartosc)
                 {
-                    w.rodzic = parent;
-                    parent.leftChild = w;
-                    queue.Enqueue(w);
-                    this.liczbaWezlow++;
+                    if(parent.leftChild == null)
+                    {
+                        parent.leftChild = w;
+                        w.rodzic = parent;
+                        this.liczbaWezlow++;
+                        return;
+                    }
+                    else
+                    {
+                        queue.Enqueue(parent.leftChild);
+                    }
                 }
                 else
                 {
-                    w.rodzic = parent;
-                    parent.rightChild = w;
-                    queue.Enqueue(w);
-                    this.liczbaWezlow++;
+                    if(parent.rightChild == null)
+                    {
+                        parent.rightChild = w;
+                        w.rodzic = parent;
+                        this.liczbaWezlow++;
+                        return;
+                    }
+                    else
+                    {
+                        queue.Enqueue(parent.rightChild);
+                    }
                 }
+
             }
         }
     }

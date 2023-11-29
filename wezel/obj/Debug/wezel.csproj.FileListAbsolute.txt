@@ -9,3 +9,13 @@ D:\166294\wezel\obj\Debug\wezel.csproj.CoreCompileInputs.cache
 D:\166294\wezel\obj\Debug\wezel.exe
 D:\166294\wezel\obj\Debug\wezel.pdb
 D:\166294\wezel\obj\Debug\wezel.Form1.resources
+C:\Users\wynio\source\repos\wezel\bin\Debug\wezel.exe.config
+C:\Users\wynio\source\repos\wezel\bin\Debug\wezel.exe
+C:\Users\wynio\source\repos\wezel\bin\Debug\wezel.pdb
+C:\Users\wynio\source\repos\wezel\obj\Debug\wezel.csproj.AssemblyReference.cache
+C:\Users\wynio\source\repos\wezel\obj\Debug\wezel.Form1.resources
+C:\Users\wynio\source\repos\wezel\obj\Debug\wezel.Properties.Resources.resources
+C:\Users\wynio\source\repos\wezel\obj\Debug\wezel.csproj.GenerateResource.cache
+C:\Users\wynio\source\repos\wezel\obj\Debug\wezel.csproj.CoreCompileInputs.cache
+C:\Users\wynio\source\repos\wezel\obj\Debug\wezel.exe
+C:\Users\wynio\source\repos\wezel\obj\Debug\wezel.pdb
