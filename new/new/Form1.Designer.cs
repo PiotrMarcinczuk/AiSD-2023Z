@@ -46,16 +46,20 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(63, 65);
+            this.textBox1.MaxLength = 900000000;
+            this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(238, 20);
+            this.textBox1.Size = new System.Drawing.Size(267, 20);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(63, 244);
+            this.textBox2.MaxLength = 900000000;
+            this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(238, 20);
+            this.textBox2.Size = new System.Drawing.Size(267, 20);
             this.textBox2.TabIndex = 1;
             // 
             // checkBox1
@@ -72,6 +76,11 @@
             // numericUpDown1
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(587, 64);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            2000000,
+            0,
+            0,
+            0});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown1.TabIndex = 3;

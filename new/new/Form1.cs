@@ -21,6 +21,7 @@ namespace @new
         {
             InitializeComponent();
             numericUpDown1.Enabled = false;
+            Generuj.Enabled = false;
         }
 
         int[] Convert(string data)
@@ -40,9 +41,9 @@ namespace @new
             catch
             {
                 MessageBox.Show("Zły format danych");
-                return null;
                 textBox1.Text = null;
                 textBox2.Text = null;
+                return null;
             }
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -57,11 +58,14 @@ namespace @new
             {
                 textBox1.Enabled = false;
                 numericUpDown1.Enabled = true;
+                Generuj.Enabled = true;
+
             }
             else
             {
                 textBox1.Enabled = true;
                 numericUpDown1.Enabled = false;
+                Generuj.Enabled = false;
             }
             textBox1.Text = "";
             textBox2.Text = "";
@@ -97,7 +101,7 @@ namespace @new
 
                 stopwatch.Stop();
                 TimeSpan timeSpan = stopwatch.Elapsed;
-                timeValue.Text = timeSpan.TotalMilliseconds + " ms";
+                timeValue.Text = timeSpan.TotalSeconds + " s";
 
                 string sortedTab = string.Join(" ", numbersTab);
                 textBox2.Text = sortedTab;
@@ -137,7 +141,7 @@ namespace @new
 
                 stopwatch.Stop();
                 TimeSpan timeSpan = stopwatch.Elapsed;
-                timeValue.Text = timeSpan.TotalMilliseconds + " ms";
+                timeValue.Text = timeSpan.TotalSeconds.ToString("0.######## s");
 
                 string sortedTab = string.Join(" ", numbersTab);
                 textBox2.Text = sortedTab;
@@ -171,7 +175,7 @@ namespace @new
 
                 stopwatch.Stop();
                 TimeSpan timeSpan = stopwatch.Elapsed;
-                timeValue.Text = timeSpan.TotalMilliseconds + " ms";
+                timeValue.Text = timeSpan.TotalSeconds + " s";
 
                 string sortedTab = string.Join(" ", numbersTab);
                 textBox2.Text = sortedTab;
@@ -180,21 +184,22 @@ namespace @new
 
         private void SM_Click(object sender, EventArgs e)
         {
-            //SM
+            //SM  
             int[] numbersTab = Convert(textBox1.Text);
 
-            
+            if(numbersTab != null)
+            {
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
                 mergeSort(numbersTab);
 
                 stopwatch.Stop();
                 TimeSpan timeSpan = stopwatch.Elapsed;
-                timeValue.Text = timeSpan.TotalMilliseconds + " ms";
+                timeValue.Text = timeSpan.TotalSeconds + " s";
 
                 string sortedTab = string.Join(" ", numbersTab);
                 textBox2.Text = sortedTab;
-            
+            }
         }
 
         private void mergeSort(int[] numbersTab)
@@ -255,20 +260,21 @@ namespace @new
         private void button1_Click_3(object sender, EventArgs e)
         {
             //SQ
+            
             int[] numbersTab = Convert(textBox1.Text);
+            if(numbersTab != null)
+            {
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+                quickSort(numbersTab, 0, numbersTab.Length - 1);
 
+                stopwatch.Stop();
+                TimeSpan timeSpan = stopwatch.Elapsed;
+                timeValue.Text = timeSpan.TotalSeconds + " s";
 
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-            quickSort(numbersTab, 0 ,numbersTab.Length-1);
-
-            stopwatch.Stop();
-            TimeSpan timeSpan = stopwatch.Elapsed;
-            timeValue.Text = timeSpan.TotalMilliseconds + " ms";
-
-            string sortedTab = string.Join(" ", numbersTab);
-            textBox2.Text = sortedTab;
-
+                string sortedTab = string.Join(" ", numbersTab);
+                textBox2.Text = sortedTab;
+            }
         }
 
         private void quickSort(int[] numbersTab, int left, int right)
@@ -284,22 +290,22 @@ namespace @new
         private int pivotIndex(int[] numbersTab, int left, int right)
         {
             int pivot = numbersTab[right];
-            int i = left - 1;
-            for(int j=left; j<right; j++)
+            int j = left - 1;
+            for(int i=left; i<right; i++)
             {
-                if (numbersTab[j] <= pivot)
+                if (numbersTab[i] <= pivot)
                 {
-                    i++;
-                    int temp = numbersTab[i];
-                    numbersTab[i] = numbersTab[j];
-                    numbersTab[j] = temp;
+                    j++;
+                    int temp = numbersTab[j];
+                    numbersTab[j] = numbersTab[i];
+                    numbersTab[i] = temp;
                 }
             }
-            int tempPivot = numbersTab[i + 1];
-            numbersTab[i + 1] = numbersTab[right];
+            int tempPivot = numbersTab[j + 1];
+            numbersTab[j + 1] = numbersTab[right];
             numbersTab[right] = tempPivot;
 
-            return i + 1;
+            return j + 1;
         }
 
         private void timeValue_Click(object sender, EventArgs e)
@@ -317,11 +323,14 @@ namespace @new
             Random random = new Random();
             int size = (int)numericUpDown1.Value;
             int[] numbersTab = new int[size];
+            StringBuilder sb = new StringBuilder();
+
             for (int i = 0; i < numbersTab.Length; i++)
             {
                 numbersTab[i] = random.Next(-2000, 2000);
-                textBox1.Text += numbersTab[i] + " ";
             }
+            textBox1.Text = string.Join(" ", numbersTab);
         }
+
     }
 }
