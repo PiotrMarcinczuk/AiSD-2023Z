@@ -84,13 +84,22 @@ namespace wezel
 
             //ABFS(w1);
             //odwiedzone.Clear();
-            DrzewoBinarne tree = new DrzewoBinarne(4);
-            var d1 = new Wezel3(2);
-            var d2 = new Wezel3(1);
-            var d3 = new Wezel3(6);
+
+            DrzewoBinarne tree = new DrzewoBinarne(5);
+            var d1 = new Wezel3(3);
+            var d2 = new Wezel3(4);
+            var d3 = new Wezel3(8);
+            var d4 = new Wezel3(7);
+            var d5 = new Wezel3(6);
+            var d6 = new Wezel3(5);
+            var d7 = new Wezel3(6);
             tree.ADD(d1);
             tree.ADD(d2);
             tree.ADD(d3);
+            tree.ADD(d4);
+            tree.ADD(d5);
+            tree.ADD(d6);
+            tree.ADD(d7);
         }
 
         List<Wezel2> odwiedzone = new List<Wezel2>();
@@ -185,8 +194,23 @@ namespace wezel
         {
             return "Wartość: " + this.wartosc.ToString();
         }
+
+        // // // / / /  // / / / / / / / 
+        public void Add(int liczba)
+        {
+            var dziecko = new Wezel3(liczba);
+            dziecko.rodzic = this;
+            if(liczba < this.wartosc)
+            {
+                this.leftChild = dziecko;
+            }
+            else
+            {
+                this.rightChild = dziecko;
+            }
+        }
     }
-    
+
     public class DrzewoBinarne
     {
         public Wezel3 korzen;
@@ -201,12 +225,12 @@ namespace wezel
         {
             Queue<Wezel3> queue = new Queue<Wezel3>();
             queue.Enqueue(this.korzen);
-            while(queue.Count > 0)
+            while (queue.Count > 0)
             {
                 Wezel3 parent = queue.Dequeue();
                 if (w.wartosc < parent.wartosc)
                 {
-                    if(parent.leftChild == null)
+                    if (parent.leftChild == null)
                     {
                         parent.leftChild = w;
                         w.rodzic = parent;
@@ -220,7 +244,7 @@ namespace wezel
                 }
                 else
                 {
-                    if(parent.rightChild == null)
+                    if (parent.rightChild == null)
                     {
                         parent.rightChild = w;
                         w.rodzic = parent;
@@ -234,6 +258,42 @@ namespace wezel
                 }
 
             }
+        }
+
+        public Wezel3 ZnajdzRodzica(int liczba)
+        {
+            var w = this.korzen;
+            Queue<Wezel3> queue = new Queue<Wezel3>();
+            queue.Enqueue(w);
+            while (queue.Count > 0)
+            {
+                Wezel3 w1 = queue.Dequeue();
+                if (liczba < w1.wartosc)
+                {
+                    if(w1.leftChild == null)
+                    {
+                        return w1;
+                    }
+                    else
+                    {
+                        w1 = w1.leftChild;
+                        queue.Enqueue(w1);
+                    }
+                }
+                else
+                {
+                    if(w1.rightChild == null)
+                    {
+                        return w1;
+                    }
+                    else
+                    {
+                        w1 = w1.rightChild;
+                        queue.Enqueue(w1);
+                    }
+                }
+            }
+            return null;
         }
     }
 }
