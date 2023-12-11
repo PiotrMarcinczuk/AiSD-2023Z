@@ -100,6 +100,15 @@ namespace wezel
             tree.ADD(d5);
             tree.ADD(d6);
             tree.ADD(d7);
+
+            var foundNode = tree.korzen.Znajdz(7);
+            var minNode = tree.korzen.ZnajdzMin(tree.korzen);
+            var maxNode = tree.korzen.ZnajdzMax(tree.korzen);
+            var successorNode = tree.korzen.leftChild.Nastepnik();
+            MessageBox.Show(foundNode.ToString());
+            MessageBox.Show(minNode.ToString());
+            MessageBox.Show(maxNode.ToString());
+            MessageBox.Show(successorNode.ToString());
         }
 
         List<Wezel2> odwiedzone = new List<Wezel2>();
@@ -195,12 +204,11 @@ namespace wezel
             return "Wartość: " + this.wartosc.ToString();
         }
 
-        // // // / / /  // / / / / / / / 
         public void Add(int liczba)
         {
             var dziecko = new Wezel3(liczba);
             dziecko.rodzic = this;
-            if(liczba < this.wartosc)
+            if (liczba < this.wartosc)
             {
                 this.leftChild = dziecko;
             }
@@ -208,6 +216,74 @@ namespace wezel
             {
                 this.rightChild = dziecko;
             }
+        }
+
+        public Wezel3 Znajdz(int liczba)
+        {
+            var current = this;
+
+            while (current != null)
+            {
+                if (liczba < current.wartosc)
+                {
+                    current = current.leftChild;
+                }
+                else if (liczba > current.wartosc)
+                {
+                    current = current.rightChild;
+                }
+                else
+                {
+                    return current; 
+                }
+            }
+
+            return null; 
+        }
+
+        public Wezel3 ZnajdzMin(Wezel3 w)
+        {
+            var current = w;
+
+            while (current.leftChild != null)
+            {
+                current = current.leftChild;
+            }
+
+            return current;
+        }
+
+        public Wezel3 ZnajdzMax(Wezel3 w)
+        {
+            var current = w;
+
+            while (current.rightChild != null)
+            {
+                current = current.rightChild;
+            }
+
+            return current;
+        }
+
+        public Wezel3 Nastepnik()
+        {
+            if (this.rightChild != null)
+            {
+                // a) Następnik - jeżeli jest prawe dziecko, bierzemy wartość najmniejszą z największych
+                return ZnajdzMin(this.rightChild);
+            }
+
+            // b) Jeżeli nie ma prawego dziecka: idź w górę tak długo, aż wyjdziesz jako lewe dziecko. Rodzic w którym wyszedłeś jest następnikiem.
+            var parent = this.rodzic;
+            var current = this;
+
+            while (parent != null && current == parent.rightChild)
+            {
+                current = parent;
+                parent = parent.rodzic;
+            }
+
+            return parent;
         }
     }
 
@@ -270,7 +346,7 @@ namespace wezel
                 Wezel3 w1 = queue.Dequeue();
                 if (liczba < w1.wartosc)
                 {
-                    if(w1.leftChild == null)
+                    if (w1.leftChild == null)
                     {
                         return w1;
                     }
@@ -282,7 +358,7 @@ namespace wezel
                 }
                 else
                 {
-                    if(w1.rightChild == null)
+                    if (w1.rightChild == null)
                     {
                         return w1;
                     }
