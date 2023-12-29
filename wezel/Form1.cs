@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -234,11 +234,11 @@ namespace wezel
                 }
                 else
                 {
-                    return current; 
+                    return current;
                 }
             }
 
-            return null; 
+            return null;
         }
 
         public Wezel3 ZnajdzMin(Wezel3 w)
@@ -284,6 +284,39 @@ namespace wezel
             }
 
             return parent;
+        }
+
+        public Wezel3 Poprzednik()
+        {
+            if (this.leftChild != null)
+            {
+                return ZnajdzMin(this.leftChild);
+            }
+
+            var parent = this.rodzic;
+            var current = this;
+
+            while (parent != null && current == parent.leftChild)
+            {
+                current = parent;
+                parent = parent.rodzic;
+            }
+
+            return parent;
+        }
+
+        internal int liczbaDzieci()
+        {
+            int wynik = 0;
+            if (this.leftChild!= null)
+            {
+                wynik++;
+            }
+            if (this.rightChild != null)
+            {
+                wynik++;
+            }
+            return wynik;
         }
     }
 
@@ -334,6 +367,48 @@ namespace wezel
                 }
 
             }
+        }
+
+        public Wezel3 Usun(Wezel3 w)
+        {
+            switch (w.liczbaDzieci())
+            {
+                case 0:
+                    w = this.UsunGdy0Dzieci(w);
+                    break;
+                case 1:
+                    w = this.UsunGdy1Dzieci(w);
+                    break;
+                case 2:
+                    w = this.UsunGdy2Dzieci(w);
+                    break;
+
+            }
+            return w;
+        }
+
+        public Wezel3 UsunGdy0Dzieci(Wezel3 w)
+        {
+            if(w.rodzic == null)
+            {
+                this.korzen = null;
+                return w;
+            }
+            if(w.rodzic.leftChild == w)
+            {
+                w.rodzic.leftChild = null;
+            }
+            else
+            {
+                w.rodzic.rightChild = null;
+            }
+            w.rodzic = null;
+            return w;
+        }
+
+        public Wezel3 UsunGdy1Dzieci(Wezel3 w)
+        {
+            // 6 przypadkow
         }
 
         public Wezel3 ZnajdzRodzica(int liczba)
