@@ -1,0 +1,10 @@
+C:\Users\wynio\source\repos\wezel3\wezel3\obj\Debug\wezel3.csproj.AssemblyReference.cache
+C:\Users\wynio\source\repos\wezel3\wezel3\obj\Debug\wezel3.Form1.resources
+C:\Users\wynio\source\repos\wezel3\wezel3\obj\Debug\wezel3.Properties.Resources.resources
+C:\Users\wynio\source\repos\wezel3\wezel3\obj\Debug\wezel3.csproj.GenerateResource.cache
+C:\Users\wynio\source\repos\wezel3\wezel3\obj\Debug\wezel3.csproj.CoreCompileInputs.cache
+C:\Users\wynio\source\repos\wezel3\wezel3\bin\Debug\wezel3.exe.config
+C:\Users\wynio\source\repos\wezel3\wezel3\bin\Debug\wezel3.exe
+C:\Users\wynio\source\repos\wezel3\wezel3\bin\Debug\wezel3.pdb
+C:\Users\wynio\source\repos\wezel3\wezel3\obj\Debug\wezel3.exe
+C:\Users\wynio\source\repos\wezel3\wezel3\obj\Debug\wezel3.pdb
