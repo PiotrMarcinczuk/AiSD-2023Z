@@ -427,7 +427,7 @@ namespace wezel
 
         public Graf(Krawedz k)
         {
-            this.Sprawdz(k);
+
         }
 
         public int Sprawdz(Krawedz k)
@@ -443,5 +443,24 @@ namespace wezel
             }
             return wynik;
         }
+
+        public void AddK(Krawedz k)
+        {
+            if (!this.listaKrawedzi.Contains(k))
+            {
+                this.listaKrawedzi.Add(k);
+            }
+            // tu 
+        }
+
+        public void Join(Graf g)
+        {
+            foreach(var k in g.listaKrawedzi)
+            {
+                this.listaKrawedzi.Add(k);
+            }
+        }
+
+
     }
 }
