@@ -1,0 +1,17 @@
+C:\Users\local\Desktop\wezel4\bin\Debug\net6.0-windows\wezel4.exe
+C:\Users\local\Desktop\wezel4\bin\Debug\net6.0-windows\wezel4.deps.json
+C:\Users\local\Desktop\wezel4\bin\Debug\net6.0-windows\wezel4.runtimeconfig.json
+C:\Users\local\Desktop\wezel4\bin\Debug\net6.0-windows\wezel4.dll
+C:\Users\local\Desktop\wezel4\bin\Debug\net6.0-windows\wezel4.pdb
+C:\Users\local\Desktop\wezel4\obj\Debug\net6.0-windows\wezel4.csproj.AssemblyReference.cache
+C:\Users\local\Desktop\wezel4\obj\Debug\net6.0-windows\wezel4.Form1.resources
+C:\Users\local\Desktop\wezel4\obj\Debug\net6.0-windows\wezel4.csproj.GenerateResource.cache
+C:\Users\local\Desktop\wezel4\obj\Debug\net6.0-windows\wezel4.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\local\Desktop\wezel4\obj\Debug\net6.0-windows\wezel4.AssemblyInfoInputs.cache
+C:\Users\local\Desktop\wezel4\obj\Debug\net6.0-windows\wezel4.AssemblyInfo.cs
+C:\Users\local\Desktop\wezel4\obj\Debug\net6.0-windows\wezel4.csproj.CoreCompileInputs.cache
+C:\Users\local\Desktop\wezel4\obj\Debug\net6.0-windows\wezel4.dll
+C:\Users\local\Desktop\wezel4\obj\Debug\net6.0-windows\refint\wezel4.dll
+C:\Users\local\Desktop\wezel4\obj\Debug\net6.0-windows\wezel4.pdb
+C:\Users\local\Desktop\wezel4\obj\Debug\net6.0-windows\wezel4.genruntimeconfig.cache
+C:\Users\local\Desktop\wezel4\obj\Debug\net6.0-windows\ref\wezel4.dll
